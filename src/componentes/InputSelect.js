@@ -1,23 +1,37 @@
 import React from 'react';
+import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material';
 
-const InputSelect = React.forwardRef(({ options, required, disabled, onChange, onBlur, name, label }, ref) => (
-   <div className='InputSelect'>
-      <label htmlFor={name}>
-         {required && <span className='required'>*</span>}
-         {label}
-      </label>
-      <select
-         name={name}
-         disabled={disabled}
-         onChange={onChange}
-         onBlur={onBlur}
-         defaultValue={0}
+import '../css/inputSelect.css';
+
+const InputSelect = React.forwardRef(({ options, required, onChange, onBlur, name, label, error }, ref) => {
+
+   options.unshift({
+      id: 0,
+      value: "Seleccionar una opción"
+   })
+
+   return (
+      <FormControl
+         className='InputSelect'
+         variant="standard"
+         required={required}
+         sx={{ m: 1, minWidth: 120 }}
+         error={error && true}
       >
-         {options.map((item, index) => (
-            <option disabled={item.id === 0 && true} key={index} value={item.id}></option>
-         ))}
-      </select>
-   </div>
-));
+         <InputLabel id="demo-simple-select-standard-label">{label}</InputLabel>
+         <Select
+            ref={ref}
+            name={name}
+            onChange={onChange}
+            onBlur={onBlur}
+         >
+            {options.map((item, index) => (
+               <MenuItem disabled={item.id === 0 && true} key={index} value={item.id}>{item.value}</MenuItem>
+            ))}
+         </Select>
+         {error && <FormHelperText>Error</FormHelperText>}
+      </FormControl>
+   )
+});
 
 export default InputSelect;

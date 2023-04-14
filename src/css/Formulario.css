@@ -1,0 +1,27 @@
+.Formulario {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.Formulario .container {
+  margin: 1.5em 0;
+  /* background: yellowgreen; */
+}
+
+.Formulario .css-1mbunh-MuiPaper-root {
+  width: 30%;
+  padding: 1em 2em;
+  /* background: yellow !important; */
+}
+
+.Formulario .css-1nl4dz3-MuiFormHelperText-root{
+   color: #d2010d !important;
+}
+
+@media only screen and (max-width: 480px) {
+  .Formulario .css-1mbunh-MuiPaper-root {
+    width: 80%;
+    padding: 1em 2em;
+  }
+}

@@ -1,14 +1,14 @@
 @font-face {
   font-family: "Regular";
-  src: url("./font/ColgateReady-Regular.ttf");
+  src: url("./font/ColgateReady-Regular.ttf") format('truetype');
 }
 
 @font-face {
   font-family: "Light";
-  src: url("./font/ColgateReady-Light.ttf");
+  src: url("./font/ColgateReady-Light.ttf") format('truetype');
 }
 
 @font-face {
   font-family: "Bold";
-  src: url("./font/ColgateReady-Bold.ttf");
+  src: url("./font/ColgateReady-Bold.ttf") format('truetype');
 }

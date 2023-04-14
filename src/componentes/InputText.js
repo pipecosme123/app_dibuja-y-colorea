@@ -1,20 +1,23 @@
 import React from 'react';
+import { FormHelperText, TextField } from '@mui/material';
 
-const InputText = React.forwardRef(({ type, required, onChange, onBlur, name, label }, ref) => (
+import '../css/InputText.css';
+
+const InputText = React.forwardRef(({ name, label, type, required, accept, onChange, onBlur, error }, ref) => (
    <div className='InputText'>
-      <label htmlFor={name}>
-         {required && <span className='required'>*</span>}
-         {label}
-      </label>
-      <input
+      <TextField
          ref={ref}
          type={type ? type : 'text'}
          id={name}
          name={name}
-         required={required}
+         accept={accept}
          onChange={onChange}
          onBlur={onBlur}
+         label={label}
+         variant="standard"
+         error={error && true}
       />
+      {error && <FormHelperText>{"error"}</FormHelperText>}
    </div>
 ));
 
