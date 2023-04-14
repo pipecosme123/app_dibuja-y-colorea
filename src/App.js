@@ -1,20 +1,18 @@
-import { ThemeProvider, createTheme } from '@mui/material';
-import './css/App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { RoutersLinks } from './constantes/RoutersLinks';
 import Formulario from './paginas/Formulario';
-import './css/fonts.css';
+import Odontologo from './paginas/Odontologo';
+
+import './css/App.css';
 
 function App() {
-
-  const theme = createTheme({
-    typography: {
-      fontFamily: ["Regular", "Light", "Bold"].join(',')
-    },
-  });
-
   return (
-    <ThemeProvider theme={theme}>
-      <Formulario />
-    </ThemeProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path={RoutersLinks.Formulario} element={<Formulario />} />
+        <Route exact path={RoutersLinks.Odontologos} element={<Odontologo />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

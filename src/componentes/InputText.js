@@ -13,11 +13,11 @@ const InputText = React.forwardRef(({ name, label, type, required, accept, onCha
          accept={accept}
          onChange={onChange}
          onBlur={onBlur}
-         label={label}
+         label={`${label}:`}
          variant="standard"
          error={error && true}
       />
-      {error && <FormHelperText>{"error"}</FormHelperText>}
+      {error && <FormHelperText error>{error.message}</FormHelperText>}
    </div>
 ));
 
