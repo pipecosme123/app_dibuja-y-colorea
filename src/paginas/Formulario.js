@@ -1,12 +1,13 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Checkbox, FormControlLabel, Paper, ThemeProvider, createTheme } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
+import { Toaster, toast } from 'react-hot-toast';
 
 import InputText from '../componentes/InputText';
 import InputSelect from '../componentes/InputSelect';
 import InputFile from '../componentes/InputFile';
 import TextField from '../componentes/TextField';
+import Loading from '../componentes/Loading';
 
 import { tipo_documento } from '../constantes/Selects';
 
@@ -14,8 +15,13 @@ import principal from '../css/img/img_principal.png';
 
 import '../css/fonts.css';
 import '../css/Formulario.css';
+import { useApi } from '../hooks/useApi';
 
 const initialForm = {
+   config: {
+      method: 'post',
+      url: '/form'
+   },
    paciente: {
       tipo_documento: '',
       no_documento: '',
@@ -27,6 +33,7 @@ const initialForm = {
       nombre: '',
       apellido: '',
       celular: '',
+      correo: ''
    },
    odontologo: {
       nombre: '',
@@ -38,9 +45,13 @@ const initialForm = {
 
 const Formulario = () => {
 
-   const { register, formState: { errors }, watch, handleSubmit } = useForm({
+   window.document.title = 'Incripciones - Dibuja y Colorea';
+
+   const { register, formState: { errors }, watch, reset, handleSubmit } = useForm({
       defaultValues: initialForm
    });
+
+   const { loading, api_handleSubmit } = useApi();
 
    const message_required = "Este campo es requerido";
    const selectedFile = watch('paciente.dibujo');
@@ -78,8 +89,38 @@ const Formulario = () => {
    });
 
    const onSubmit = (data) => {
-      console.log(data);
+
+      const formData = new FormData();
+      const fotografia = data.paciente.dibujo[0];
+      delete data.paciente.dibujo;
+
+      formData.append('image', fotografia);
+      formData.append('data', JSON.stringify(data));
+
+      api_handleSubmit(data.config, formData)
+         .then((res) => {
+            show_toast('success', res.data);
+            reset(initialForm);
+         })
+         .catch((err) => {
+            if (err.status === 409) {
+               show_toast('error', err.data);
+               reset(initialForm);
+            } else {
+               show_toast('error', err.data);
+            }
+         })
    };
+
+   const show_toast = (type, message) => {
+      toast[type](message, {
+         duration: 10000,
+         position: 'top-center',
+         style: {
+            fontFamily: 'Regular'
+         }
+      })
+   }
 
    return (
       <div className='Formulario'>
@@ -173,6 +214,21 @@ const Formulario = () => {
                         }
                      })} type={'number'} required={true} label={"Teléfono Celular"} error={errors.acudiente?.celular} />
 
+                     <InputText {...register('acudiente.correo', {
+                        required: {
+                           value: true,
+                           message: message_required
+                        },
+                        pattern: {
+                           value: /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
+                           message: 'Ingrese un correo electrónico válido'
+                        },
+                        maxLength: {
+                           value: 45,
+                           message: "Se ha superado el límite máximo de 80 caracteres"
+                        }
+                     })} type={'email'} required={true} label={"Correo Electrónico"} error={errors.acudiente?.correo} />
+
                   </div>
 
                   <div className='container'>
@@ -215,8 +271,8 @@ const Formulario = () => {
 
                   <div className='container'>
                      <TextField type={'h6'} align={'center'}>Fotografía del dibujo del niño(a)</TextField>
-                     <TextField type={'body2'}>Se debe subir una fotografía del dibujo realizdo por su niño(a):</TextField>
-                     <TextField type={'caption'}>Únicamente se aceptan imágenes en formato <i>.jpg</i> y <i>.png</i></TextField>
+                     <TextField type={'body2'}>Se debe subir una fotografía del dibujo realizado por su niño(a):</TextField>
+                     <TextField type={'caption'}>Únicamente se acepta la fotografía en formato <i>.jpg</i> y <i>.png</i></TextField>
                      <InputFile {...register('paciente.dibujo', {
                         required: {
                            value: true,
@@ -231,7 +287,7 @@ const Formulario = () => {
                      <TextField type={'body2'} align={'justify'}>Autorizo la recolección, almacenamiento, uso, tratamiento, y transmisión internacional o a terceros de mis datos personales por parte de <b>COLGATE PALMOLIVE COMPAÑÍA</b> con <b>NIT 890.300.546-6</b>, con el fin de recibir información sobre sus productos, campañas publicitarias y promociones , hacer parte de sus actividades para profesionales de la salud y recibir información comercial especializada de la misma. Esto de acuerdo a lo establecido en la Ley 1581 de 2012 y el decreto 377 de 2013, y conforme a la política de datos personales disponible en <a href="https://www.colgatepalmolive.com.co/legal-privacy-policy" target="_blank" rel="noopener noreferrer"><i><u>https://www.colgatepalmolive.com.co/legal-privacy-policy</u></i></a>. Entendiendo que puedo solicitar la modificación o supresión de mis datos personales en cualquier momento.</TextField>
 
                      <div className="form-check">
-                        <FormControlLabel control={<Checkbox {...register('check')} />} label={"Si autorizo la recolección y uso de mis datos personales"} />
+                        <FormControlLabel control={<Checkbox checked={watch('check')} {...register('check')} />} label={"Si autorizo la recolección y uso de mis datos personales"} />
                      </div>
                   </div>
                   <div className='container-btn-submit'>
@@ -243,6 +299,8 @@ const Formulario = () => {
                </form>
             </Paper>
          </ThemeProvider>
+         <Loading open={loading} />
+         <Toaster />
       </div>
    );
 };

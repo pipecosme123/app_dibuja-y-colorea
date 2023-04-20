@@ -18,7 +18,7 @@ import '../css/InputFile.css';
 const InputFile = React.forwardRef(({ onChange, onBlur, name, error, filename, selectedFile }, ref) => (
    <div className='InputFile'>
       <Button color="secondary" className='btn-file' variant="contained" component="label" disableElevation>
-         Seleccionar imagen
+         Seleccionar foto
          <input
             ref={ref}
             name={name}

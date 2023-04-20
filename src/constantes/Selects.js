@@ -1,14 +1,14 @@
 export const tipo_documento = [
    {
-      id: 1,
+      id: "RC",
       value: "RC - Registro civil"
    },
    {
-      id: 2,
+      id: "TI",
       value: "TI - Tarjeta de identidad"
    },
    {
-      id: 3,
+      id: "CE",
       value: "CE - Carnet de extranjería"
    }
 ]

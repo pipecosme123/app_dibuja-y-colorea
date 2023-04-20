@@ -4,6 +4,7 @@ import Formulario from './paginas/Formulario';
 import Odontologo from './paginas/Odontologo';
 
 import './css/App.css';
+import Insituciones from './paginas/Insituciones';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route exact path={RoutersLinks.Formulario} element={<Formulario />} />
         <Route exact path={RoutersLinks.Odontologos} element={<Odontologo />} />
+        <Route exact path={RoutersLinks.Insituciones} element={<Insituciones />} />
       </Routes>
     </BrowserRouter>
   );

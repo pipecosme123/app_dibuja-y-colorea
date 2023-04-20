@@ -11,7 +11,7 @@ const InputSelect = React.forwardRef(({ options, value, onChange, onBlur, name, 
          sx={{ m: 1, minWidth: 120 }}
          error={error && true}
       >
-         <InputLabel id="demo-simple-select-standard-label">{label}</InputLabel>
+         <InputLabel>{label}</InputLabel>
          <Select
             ref={ref}
             name={name}
