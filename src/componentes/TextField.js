@@ -7,6 +7,7 @@ const TextField = ({ children, type, align }) => {
    return (
       <Typography className={`TextField ${type} ${align}`} variant={type} gutterBottom>
          {children}
+         <br />
       </Typography>
    );
 };

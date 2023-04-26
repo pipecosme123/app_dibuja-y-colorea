@@ -18,10 +18,6 @@ import '../css/Formulario.css';
 import { useApi } from '../hooks/useApi';
 
 const initialForm = {
-   config: {
-      method: 'post',
-      url: '/form'
-   },
    paciente: {
       tipo_documento: '',
       no_documento: '',
@@ -43,7 +39,7 @@ const initialForm = {
    check: false
 }
 
-const Formulario = () => {
+const Formulario = ({ colaborador }) => {
 
    window.document.title = 'Incripciones - Dibuja y Colorea';
 
@@ -90,24 +86,32 @@ const Formulario = () => {
 
    const onSubmit = (data) => {
 
+      const config = {
+         method: 'post',
+         url: '/form',
+         formData: true
+      }
+
       const formData = new FormData();
       const fotografia = data.paciente.dibujo[0];
+      data.folder = colaborador ? 'empleados' : 'odontologos';
       delete data.paciente.dibujo;
+      delete data.check;
 
       formData.append('image', fotografia);
       formData.append('data', JSON.stringify(data));
 
-      api_handleSubmit(data.config, formData)
+      api_handleSubmit(config, formData)
          .then((res) => {
             show_toast('success', res.data);
             reset(initialForm);
          })
          .catch((err) => {
+
+            show_toast('error', err.data);
+
             if (err.status === 409) {
-               show_toast('error', err.data);
                reset(initialForm);
-            } else {
-               show_toast('error', err.data);
             }
          })
    };
@@ -220,7 +224,7 @@ const Formulario = () => {
                            message: message_required
                         },
                         pattern: {
-                           value: /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
+                           value: /^([\da-z_-]+)@([\da-z-]+)\.([a-z]{2,6})$/,
                            message: 'Ingrese un correo electrónico válido'
                         },
                         maxLength: {
@@ -231,43 +235,45 @@ const Formulario = () => {
 
                   </div>
 
-                  <div className='container'>
-                     <TextField type={'h6'} align={'center'}>Información del odontólogo</TextField>
-                     <InputText {...register('odontologo.nombre', {
-                        required: {
-                           value: true,
-                           message: message_required
-                        },
-                        maxLength: {
-                           value: 45,
-                           message: "Se ha superado el límite máximo de 45 caracteres"
-                        }
-                     })} label={"Nombres"} error={errors.odontologo?.nombre} />
+                  {!colaborador &&
+                     <div className='container'>
+                        <TextField type={'h6'} align={'center'}>Información del odontólogo</TextField>
+                        <InputText {...register('odontologo.nombre', {
+                           required: {
+                              value: true,
+                              message: message_required
+                           },
+                           maxLength: {
+                              value: 45,
+                              message: "Se ha superado el límite máximo de 45 caracteres"
+                           }
+                        })} label={"Nombres"} error={errors.odontologo?.nombre} />
 
-                     <InputText {...register('odontologo.apellido', {
-                        required: {
-                           value: true,
-                           message: message_required
-                        },
-                        maxLength: {
-                           value: 45,
-                           message: "Se ha superado el límite máximo de 45 caracteres"
-                        }
-                     })} label={"Apellidos"} error={errors.odontologo?.apellido} />
+                        <InputText {...register('odontologo.apellido', {
+                           required: {
+                              value: true,
+                              message: message_required
+                           },
+                           maxLength: {
+                              value: 45,
+                              message: "Se ha superado el límite máximo de 45 caracteres"
+                           }
+                        })} label={"Apellidos"} error={errors.odontologo?.apellido} />
 
-                     <InputText {...register('odontologo.celular', {
-                        required: {
-                           value: true,
-                           message: message_required
-                        },
-                        maxLength: {
-                           value: 10,
-                           message: "Se ha superado el límite máximo de 10 caracteres"
-                        }
-                     })} type={'number'} label={"Teléfono celular"} error={errors.odontologo?.celular} />
+                        <InputText {...register('odontologo.celular', {
+                           required: {
+                              value: true,
+                              message: message_required
+                           },
+                           maxLength: {
+                              value: 10,
+                              message: "Se ha superado el límite máximo de 10 caracteres"
+                           }
+                        })} type={'number'} label={"Teléfono celular"} error={errors.odontologo?.celular} />
 
-                     {/* <InputSelect /> */}
-                  </div>
+                        {/* <InputSelect /> */}
+                     </div>
+                  }
 
                   <div className='container'>
                      <TextField type={'h6'} align={'center'}>Fotografía del dibujo del niño(a)</TextField>

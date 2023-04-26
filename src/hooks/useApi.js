@@ -6,11 +6,8 @@ export const useApi = () => {
 
    const [loading, setLoading] = useState(false);
 
-   const conexion = axios.create({
-      baseURL: urlApi,
-      headers: {
-         'Content-Type': 'multipart/form-data'
-      }
+   const Conexion = axios.create({
+      baseURL: urlApi
    })
 
    const api_handleSubmit = async (config, form) => {
@@ -18,10 +15,14 @@ export const useApi = () => {
       setLoading(true);
 
       return await new Promise((resolve, reject) => {
-         conexion({
+         Conexion({
             method: config.method,
             url: config.url,
-            data: form
+            data: form,
+            params: config.params,
+            headers: {
+               'Content-Type': config.formData ? 'multipart/form-data' : null
+            }
          })
             .then((response) => {
                resolve(response);
