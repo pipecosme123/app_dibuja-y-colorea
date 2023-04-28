@@ -1,4 +1,35 @@
-.Odontologo .paper-odontologo{
-   margin: 2em 0px;
-   padding: 1em 2em;
+.Odontologo {
+  height: 100vh;
+  background: #f3f3f3;
+}
+
+.Odontologo .logo {
+  padding: 2em 0;
+  text-align: center;
+}
+
+.Odontologo .logo img {
+  height: 15em;
+}
+
+.Odontologo .paper-odontologo {
+  padding: 1em 2em;
+}
+
+.Odontologo ul.ImageList-dibujos {
+  grid-template-columns: repeat(5, 1fr) !important;
+}
+
+@media only screen and (max-width: 480px) {
+  .Odontologo .logo img {
+    width: 80%;
+  }
+
+  .Odontologo .paper-odontologo {
+    padding: 1em;
+  }
+
+  .Odontologo ul.ImageList-dibujos {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
 }

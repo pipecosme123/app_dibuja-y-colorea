@@ -39,7 +39,7 @@ const initialForm = {
    check: false
 }
 
-const Formulario = ({ colaborador }) => {
+const Formulario = ({ tipo }) => {
 
    window.document.title = 'Incripciones - Dibuja y Colorea';
 
@@ -94,7 +94,7 @@ const Formulario = ({ colaborador }) => {
 
       const formData = new FormData();
       const fotografia = data.paciente.dibujo[0];
-      data.folder = colaborador ? 'empleados' : 'odontologos';
+      data.folder = tipo ? 'empleados' : 'odontologos';
       delete data.paciente.dibujo;
       delete data.check;
 
@@ -235,7 +235,7 @@ const Formulario = ({ colaborador }) => {
 
                   </div>
 
-                  {!colaborador &&
+                  {tipo === 'odontologos' &&
                      <div className='container'>
                         <TextField type={'h6'} align={'center'}>Información del odontólogo</TextField>
                         <InputText {...register('odontologo.nombre', {

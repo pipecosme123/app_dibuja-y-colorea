@@ -7,10 +7,11 @@ import ImageItem from '../componentes/ImageItem';
 import WindowModal from '../componentes/WindowModal';
 import { urlApi } from '../constantes/RoutersLinks';
 import TextField from '../componentes/TextField';
+import logo from '../css/img/Logo.svg';
 
 import '../css/Odontologo.css';
 
-const Odontologo = () => {
+const Odontologo = ({ tipo }) => {
 
    window.document.title = 'Incripciones - Dibuja y Colorea';
 
@@ -68,10 +69,9 @@ const Odontologo = () => {
       const get_data = () => {
          api_handleSubmit({
             method: 'get',
-            url: `/dibujos/${page}`
+            url: `/dibujos/${tipo}/${page}`
          })
             .then((res) => {
-               console.log(res.data);
                setData(res.data)
             })
             .catch((err) => {
@@ -85,23 +85,29 @@ const Odontologo = () => {
    return (
       <ThemeProvider theme={theme}>
          <Container fixed className='Odontologo'>
+            <div className="logo">
+               <img src={logo} alt="" />
+            </div>
             <Paper className='paper-odontologo' elevation={2}>
                <TextField type={'h5'} align={'center'}>Participantes</TextField>
 
-               <ImageList cols={5}>
+               <ImageList className='ImageList-dibujos'>
                   {data.map((item, index) => (
-                     <ImageItem key={index} item={item} handleShow={handleShow} />
+                     <div key={index}>
+                        <ImageItem item={item} handleShow={handleShow} />
+                     </div>
                   ))}
                </ImageList>
 
                <Loading open={loading} />
 
                <WindowModal show={show} handleClose={handleClose}>
-                  <TextField type={'h5'} align={'center'}>Mi dibujo</TextField>
-                  <img className='img-modal' src={`${urlApi}/images/${imageModal.url}`} alt="" />
-                  <TextField type={'subtitle1'}>Artista: {imageModal.infantes}</TextField>
-                  <TextField type={'caption'}>Acudiente: {imageModal.padres}</TextField>
-                  <TextField type={'caption'}>Odontólogo: {imageModal.odontologo}</TextField>
+                  <div className="content-img-modal">
+                     <img className='img-modal' src={`${urlApi}/images/${imageModal.url}`} alt="" />
+                  </div>
+                  <TextField type={'subtitle1'}><b>Artista:</b> {imageModal.infantes}</TextField>
+                  <TextField type={'caption'}><b>Acudiente:</b> {imageModal.padres}</TextField>
+                  {imageModal.odontologo !== '- -' && <TextField type={'caption'}><b>Odontólogo:</b> {imageModal.odontologo}</TextField>}
                </WindowModal>
             </Paper>
          </Container>
