@@ -19,9 +19,9 @@ const InputSelect = React.forwardRef(({ options, value, onChange, onBlur, name, 
             onBlur={onBlur}
             value={value}
          >
-            <MenuItem disabled={true} value={0}>{"Seleccionar una opción"}</MenuItem>
+            <MenuItem disabled={true} value={''}>{"Seleccionar una opción"}</MenuItem>
             {options.map((item, index) => (
-               <MenuItem disabled={item.id === 0 && true} key={index} value={item.id}>{item.value}</MenuItem>
+               <MenuItem key={index} value={item}>{item}</MenuItem>
             ))}
          </Select>
          {error && <FormHelperText error>{error.message}</FormHelperText>}

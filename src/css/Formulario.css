@@ -45,6 +45,16 @@
   padding: 1em 2em;
 }
 
+.Formulario .fecha-dibujo{
+  width: 100%;
+}
+
+.Formulario .fecha-dibujo fieldset{
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+}
+
 .Formulario .container-btn-submit {
   width: 100%;
   margin: 1em 0;

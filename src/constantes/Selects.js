@@ -1,14 +1,12 @@
-export const tipo_documento = [
-   {
-      id: "RC",
-      value: "RC - Registro civil"
-   },
-   {
-      id: "TI",
-      value: "TI - Tarjeta de identidad"
-   },
-   {
-      id: "CE",
-      value: "CE - Carnet de extranjería"
-   }
-]
+export const tipo_documento = {
+   infantil: [
+      "RC - Registro civil",
+      "TI - Tarjeta de identidad",
+      "CE - Carnet de extranjería"
+   ],
+   acudiente: [
+      "CC - Cédula de ciudadanía",
+      "CE - Cédula de extranjería",
+      "PA - Pasaporte",
+   ]
+}

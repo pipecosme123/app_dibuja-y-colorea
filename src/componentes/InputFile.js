@@ -11,14 +11,13 @@ import '../css/InputFile.css';
  * @param {function} props.onBlur - La función que se llama cuando el componente pierde el foco.
  * @param {string} props.name - El nombre del campo de entrada.
  * @param {object} props.error - El objeto de error asociado al campo.
- * @param {string} props.filename - El nombre del archivo seleccionado.
  * @param {React.Ref} ref - La referencia al componente de entrada de archivo.
  * @returns {JSX.Element} - El componente de entrada de archivo.
  */
-const InputFile = React.forwardRef(({ onChange, onBlur, name, error, filename, selectedFile }, ref) => (
+const InputFile = React.forwardRef(({ onChange, onBlur, name, error, selectedFile, label, color }, ref) => (
    <div className='InputFile'>
-      <Button color="secondary" className='btn-file' variant="contained" component="label" disableElevation>
-         Seleccionar foto
+      <Button color={color} className='btn-file' variant="contained" component="label" disableElevation>
+         {label}
          <input
             ref={ref}
             name={name}
