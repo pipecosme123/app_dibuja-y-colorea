@@ -1,5 +1,9 @@
+const Page_instituciones = '/home'
+
 export const RoutersLinks = {
-   Page_instituciones: '/instituciones',
+   Page_instituciones,
+   Docentes: `/docentes`,
+   Rector: `/rector`,
    Form_insituciones: '/'
 }
 

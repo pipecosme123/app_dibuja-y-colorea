@@ -1,0 +1,44 @@
+.DocumentoFirmado {
+  width: 80%;
+  margin: 0 auto;
+  padding: 2em;
+  border: 1px solid #0000001f;
+  border-radius: 10px;
+}
+
+.DocumentoFirmado .btn-excel {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.DocumentoFirmado .btn-excel:nth-child(1) {
+  width: 100%;
+  font-weight: 700;
+}
+
+.DocumentoFirmado .text-excel {
+  margin-top: 1em;
+}
+
+.DocumentoFirmado .text-excel * {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  color: darkgreen;
+}
+
+.DocumentoFirmado .autorizacion {
+  width: 60%;
+  margin: 0 auto;
+  padding: 2em 4em;
+}
+
+.DocumentoFirmado .container-btn-submit {
+width: 100%;
+margin-top: 2em;
+}
+
+.DocumentoFirmado .container-btn-submit .btn-submit{
+   width: 100%;
+}

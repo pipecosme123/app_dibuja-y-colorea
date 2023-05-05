@@ -14,24 +14,27 @@ import '../css/InputFile.css';
  * @param {React.Ref} ref - La referencia al componente de entrada de archivo.
  * @returns {JSX.Element} - El componente de entrada de archivo.
  */
-const InputFile = React.forwardRef(({ onChange, onBlur, name, error, selectedFile, label, color }, ref) => (
-   <div className='InputFile'>
-      <Button color={color} className='btn-file' variant="contained" component="label" disableElevation>
-         {label}
-         <input
-            ref={ref}
-            name={name}
-            type="file"
-            accept={'image/png, image/jpeg'}
-            onChange={onChange}
-            onBlur={onBlur}
-            style={{ display: "none" }}
-         />
-      </Button>
+const InputFile = React.forwardRef(({ onChange, onBlur, name, error, selectedFile, accept, label, color }, ref) => (
+   <div className={`InputFile`}>
+      <div className="btn-input-file">
+         <Button color={color} className={`btn-file`} variant="contained" component="label">
+            {label}
+            <input
+               ref={ref}
+               name={name}
+               type="file"
+               accept={accept}
+               onChange={onChange}
+               onBlur={onBlur}
+               style={{ display: "none" }}
+            />
+         </Button>
 
-      {selectedFile.length !== 0 && (
-         <img className='img-dibujo' src={URL.createObjectURL(selectedFile[0])} alt="Imagen seleccionada" />
-      )}
+         {selectedFile.length !== 0 && (
+            accept !== '.csv' &&
+            <img className='img-dibujo' src={URL.createObjectURL(selectedFile[0])} alt="Imagen seleccionada" />
+         )}
+      </div>
 
       {error && <FormHelperText error>{error.message}</FormHelperText>}
 
