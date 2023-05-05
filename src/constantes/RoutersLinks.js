@@ -1,9 +1,6 @@
 export const RoutersLinks = {
-   Form_Odontologos: '/inscripciones',
-   Form_Colaboradores: '/participa',
-   View_Odontologos: '/page/odontologos',
-   View_Colaboradores: '/page/colaboradores',
-   Insituciones: '/'
+   Page_instituciones: '/instituciones',
+   Form_insituciones: '/'
 }
 
 // export const urlApi = "http://localhost:3012";
