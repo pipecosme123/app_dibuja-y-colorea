@@ -7,12 +7,14 @@ export const useApi = () => {
    const [loading, setLoading] = useState(false);
 
    const Conexion = axios.create({
-      baseURL: urlApi
+      baseURL: urlApi,
+
    })
 
    const api_handleSubmit = async (config, form) => {
 
       setLoading(true);
+      const auth = get_Auth(config);
 
       return await new Promise((resolve, reject) => {
          Conexion({
@@ -20,7 +22,9 @@ export const useApi = () => {
             url: config.url,
             data: form,
             params: config.params,
+            auth: auth,
             headers: {
+               authorization: `Bearer ${localStorage.getItem('token')}`,
                'Content-Type': config.formData ? 'multipart/form-data' : null
             }
          })
@@ -35,6 +39,17 @@ export const useApi = () => {
             })
       });
    };
+
+   const get_Auth = (form) => {
+
+      if (form.auth) {
+         return {
+            username: form.auth.username,
+            password: form.auth.password
+         }
+      } else { return null }
+   }
+
 
    return {
       loading,

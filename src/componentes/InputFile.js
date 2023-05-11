@@ -31,7 +31,7 @@ const InputFile = React.forwardRef(({ onChange, onBlur, name, error, selectedFil
          </Button>
 
          {selectedFile.length !== 0 && (
-            accept !== '.csv' &&
+            accept !== '.xlsx' &&
             <img className='img-dibujo' src={URL.createObjectURL(selectedFile[0])} alt="Imagen seleccionada" />
          )}
       </div>

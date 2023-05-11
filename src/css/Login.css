@@ -1,0 +1,72 @@
+.Login {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.Login .content {
+  width: 50%;
+}
+
+.Login .content.form {
+  display: flex;
+  align-items: center;
+}
+
+.Login .content.form form {
+  width: 50%;
+  margin: 0 auto;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #0000001f;
+  border-radius: 10px;
+}
+
+.Login .content.image {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("./img/fondo.jpg") no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+
+.Login .content.image img {
+  width: 60%;
+}
+
+.Login .container-btn-submit {
+  margin-top: 2em;
+}
+
+.Login .container-btn-submit button > b {
+  color: #fff;
+}
+
+@media only screen and (max-width: 480px) {
+  .Login {
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: url("./img/fondo.jpg") no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+  }
+
+  .Login .content {
+    width: 90%;
+  }
+
+  .Login .content.image {
+    display: none;
+  }
+
+  .Login .content.form form {
+    width: 90%;
+    padding: 1em;
+    background: #fff;
+  }
+}

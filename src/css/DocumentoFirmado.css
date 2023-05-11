@@ -4,6 +4,7 @@
   padding: 2em;
   border: 1px solid #0000001f;
   border-radius: 10px;
+  background: #fff;
 }
 
 .DocumentoFirmado .btn-excel {
@@ -41,4 +42,8 @@ margin-top: 2em;
 
 .DocumentoFirmado .container-btn-submit .btn-submit{
    width: 100%;
+}
+
+.DocumentoFirmado b.info{
+  text-transform: uppercase;
 }

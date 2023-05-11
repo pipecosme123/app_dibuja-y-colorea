@@ -1,0 +1,39 @@
+.CompNavBar {
+  height: 5em;
+  border-bottom: 1px solid #0000001f;
+  margin-bottom: 2em;
+}
+
+.CompNavBar .Container-Nav {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Container-Nav .logo {
+  width: 100%;
+  display: flex;
+}
+
+.Container-Nav .logo img.img-logo {
+   width: 20%;
+ }
+
+.Container-Nav .logo .institucion {
+  width: max-content;
+  height: 100%;
+  margin: auto 0 auto 1em;
+}
+
+.logo .institucion > *{
+   font-size: 1.2em;
+   font-weight: 900;
+   text-transform: uppercase;
+}
+
+.Container-Nav .btn-cerrar {
+  width: 100%;
+  text-align: right;
+}
