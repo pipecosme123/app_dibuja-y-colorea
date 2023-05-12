@@ -15,7 +15,7 @@ import { Toaster, toast } from 'react-hot-toast';
 import Loading from '../componentes/Loading';
 import { useApi } from '../hooks/useApi';
 import TablaDatos from '../componentes/TablaDatos';
-import { DOCENTE, RECTOR } from '../constantes/Constantes';
+import { DOCENTE, MURAL, RECTOR } from '../constantes/Constantes';
 
 const initialForm = {
    documento: {
@@ -71,6 +71,8 @@ const DocumentoFirmado = ({ set_Check, rol }) => {
 
       api_handleSubmit(config, formData)
          .then((res) => {
+
+            console.log(res);
             show_toast('success', res.data);
             reset(initialForm);
             set_Check(rol)
@@ -208,11 +210,19 @@ const DocumentoFirmado = ({ set_Check, rol }) => {
             }
             <br />
 
+            {rol === RECTOR &&
+               <div>
+                  <TextField type={'h6'} align={'center'}>Lista de participantes</TextField>
+                  <TextField type={'body1'} align={'justify'}>A continuación se presenta la lista de los niños(a) que van a participar de la actividad <b>"Pinta un mural con el Dr. Muelitas"</b></TextField>
+                  <TablaDatos datos={datos} />
+               </div>
+            }
+
             <hr />
 
             <TextField type={'h6'} align={'center'}>AUTORIZACIÓN USO DE OBRA (MURAL)</TextField>
             <Paper elevation={3} className='autorizacion'>
-               <TextField>
+               <TextField type={'body2'}>
                   Señores <br />
                   COLGATE PALMOLIVE COMPAÑÍA <br />
                   NIT. 890.300.546-6 <br />
@@ -220,14 +230,19 @@ const DocumentoFirmado = ({ set_Check, rol }) => {
                </TextField>
 
                {rol === DOCENTE ?
-
-                  <TextField>
-                     Cordial saludo, por medio de la presente yo <b>{`${watch('nombre')} ${watch('apellido')}`}</b> identificado con <b>{watch('documento.tipo')}</b> No. <b>{watch('documento.numero')}</b>, docente del colegio <b className='info'>{localStorage.getItem('nombre')}</b>, sede <b className='info'>{localStorage.getItem('sede')}</b>, código DANE <b className='info'>{localStorage.getItem('codigo_dane')}</b>, me permito TRANSFERIR los derechos patrimoniales de la imagen del mural en cuya elaboración participé, y que trata el tema “Mundo de Sonrisas Sanas. Creciendo con hábitos saludables.”, a COLGATE PALMOLIVE COMPAÑÍA Nit 890.300.546-6 para que incluya en la página web <a href="https://www.pinta-un-mural-sbfb.col1.co">www.pinta-un-mural-sbfb.col1.co</a> y/o en el calendario de relaciones profesionales de esta empresa - 2024. Esta cesión se realiza a título gratuito por lo tanto COLGATE PALMOLIVE COMPAÑÍA no estará obligada a realizar ningún pago por este concepto y autorizo a esta empresa a realizar la recolección, almacenamiento, uso, circulación de mis datos personales y los de mi menor hijo, según la política de datos disponible en la página <a href="https://www.colgate.com.co">www.colgate.com.co</a>.  <br /> Atentamente,
-                  </TextField>
+                  <>
+                     <TextField type={'body1'} align={'center'}> <b>REF: AUTORIZACIÓN USO DE OBRA  (MURAL)</b> </TextField>
+                     <br />
+                     <TextField type={'body2'} align={'justify'}>
+                        Cordial saludo, por medio de la presente, yo <b>{`${watch('nombre')} ${watch('apellido')}`}</b> identificado con <b>{watch('documento.tipo')}</b> No. <b>{watch('documento.numero')}</b>, docente del colegio <b className='info'>{localStorage.getItem('nombre')}</b>, sede <b className='info'>{localStorage.getItem('sede')}</b>, código DANE <b className='info'>{localStorage.getItem('codigo_dane')}</b>, me permito TRANSFERIR los derechos patrimoniales de la imagen del mural en cuya elaboración participé, y que trata el tema “Mundo de Sonrisas Sanas. Creciendo con hábitos saludables.”, a COLGATE PALMOLIVE COMPAÑÍA Nit 890.300.546-6 para que incluya en la página web <a href="https://www.pinta-un-mural-sbfb.col1.co">www.pinta-un-mural-sbfb.col1.co</a> y/o en el calendario de relaciones profesionales de esta empresa - 2024. Esta cesión se realiza a título gratuito por lo tanto COLGATE PALMOLIVE COMPAÑÍA no estará obligada a realizar ningún pago por este concepto y autorizo a esta empresa a realizar la recolección, almacenamiento, uso, circulación de mis datos personales y los de mi menor hijo, según la política de datos disponible en la página <a href="https://www.colgate.com.co">www.colgate.com.co</a>.  <br /> Atentamente,
+                     </TextField>
+                  </>
 
                   :
                   <>
-                     <TextField align={'justify'}>
+                     <TextField type={'body1'} align={'center'}> <b>REF: AUTORIZACIÓN USO DE OBRA  (MURAL) y TRATAMIENTO DATOS PERSONALES DE LOS MENORES</b> </TextField>
+                     <br />
+                     <TextField type={'body2'} align={'justify'}>
                         Por medio de la presente, yo <b>{`${watch('nombre')} ${watch('apellido')}`}</b> identificado con <b>{watch('documento.tipo')}</b> No. <b>{watch('documento.numero')}</b>, rector y representante legal del colegio <b className='info'>{localStorage.getItem('nombre')}</b>, sede <b className='info'>{localStorage.getItem('sede')}</b>, código DANE <b className='info'>{localStorage.getItem('codigo_dane')}</b>, AUTORIZO a <b>COLGATE PALMOLIVE COMPAÑÍA Nit 890.300.546-6</b> para que incluya en la página web <a href="http://www.pinta-un-mural-sbfb.col1.co" target="_blank" rel="noopener noreferrer">www.pinta-un-mural-sbfb.col1.co</a> y/o en el calendario de relaciones profesionales de esta empresa – 2024, el mural realizado por los alumnos que a continuación se indican, y que trata el tema “Mundo de Sonrisas Sanas. Creciendo con hábitos saludables.” Por este documento declaro que cuento con la debida autorización de los representantes de los menores para la participación de la obra en la celebración del “Día del Niño” de su empresa, y por lo tanto cuento con los derechos, cesiones y permisos para el uso y publicación de la obra exonerando a COLGATE PALMOLIVE COMPAÑÍA de cualquier reclamo sobre derechos de autor. Esta cesión se realiza a título gratuito por lo tanto COLGATE PALMOLIVE COMPAÑÍA no estará obligada a realizar ningún pago por este concepto. Así mismo manifiesto que cuento con la autorización de realizar la recolección, almacenamiento, uso, circulación de los datos personales otorgados por los padres o acudientes en representación de los estudiantes según la política de datos disponible en la página <a href="http://www.colgate.com.co" target="_blank" rel="noopener noreferrer">www.colgate.com.co</a>.
                         <br />
                         Autorizo a esta empresa a realizar la recolección, almacenamiento, uso, circulación de mis datos personales, según la política de datos disponible en la página <a href="http://www.colgate.com.co" target="_blank" rel="noopener noreferrer">www.colgate.com.co</a>.
@@ -245,16 +260,6 @@ const DocumentoFirmado = ({ set_Check, rol }) => {
                </TextField>
                <br />
             </Paper>
-
-            <br />
-
-            {rol === RECTOR &&
-               <div>
-                  <TextField type={'h6'} align={'center'}>Lista de participantes</TextField>
-                  <TextField type={'body1'} align={'justify'}>A continuación se presenta la lista de los niños(a) que van a participar de la actividad "Pinta un mural con el Dr. Muelitas"</TextField>
-                  <TablaDatos datos={datos} />
-               </div>
-            }
 
             <br />
             <TextField type={'body1'} align={'justify'}>Se debe subir una fotografía legible y lo más cercana posible de la firma del {rol === DOCENTE ? "Docente líder" : "Representante legal"} de la institución, para certificar la <b>Autorización de uso de la obra</b></TextField>

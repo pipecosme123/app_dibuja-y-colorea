@@ -95,7 +95,7 @@ const Login = () => {
                      value: 45,
                      message: "Se ha superado el límite máximo de 45 caracteres"
                   }
-               })} required={true} label={"Usuario"} error={errors.username} />
+               })} required={true} label={"Correo Electrónico"} error={errors.username} />
 
                <InputText {...register('password', {
                   required: {

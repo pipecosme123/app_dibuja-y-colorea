@@ -36,14 +36,35 @@
 }
 
 .DocumentoFirmado .container-btn-submit {
-width: 100%;
-margin-top: 2em;
+  width: 100%;
+  margin-top: 2em;
 }
 
-.DocumentoFirmado .container-btn-submit .btn-submit{
-   width: 100%;
+.DocumentoFirmado .container-btn-submit .btn-submit {
+  width: 100%;
 }
 
-.DocumentoFirmado b.info{
+.DocumentoFirmado b.info {
   text-transform: uppercase;
+}
+
+@media only screen and (max-width: 480px) {
+  .DocumentoFirmado {
+    width: 90%;
+    padding: 1em;
+  }
+
+  .DocumentoFirmado .btn-excel {
+    flex-direction: column;
+  }
+
+  .DocumentoFirmado .btn-excel a {
+    text-align: center;
+    margin-bottom: 1em;
+  }
+
+  .DocumentoFirmado .autorizacion {
+    width: 90%;
+    padding: 1em;
+  }
 }
