@@ -15,7 +15,7 @@ import { Toaster, toast } from 'react-hot-toast';
 import Loading from '../componentes/Loading';
 import { useApi } from '../hooks/useApi';
 import TablaDatos from '../componentes/TablaDatos';
-import { DOCENTE, MURAL, RECTOR } from '../constantes/Constantes';
+import { DOCENTE, RECTOR } from '../constantes/Constantes';
 
 const initialForm = {
    documento: {
@@ -180,15 +180,18 @@ const DocumentoFirmado = ({ set_Check, rol }) => {
                <div className='content-excel'>
                   <br />
                   <TextField type={'h6'} align={'center'}>Lista de participantes</TextField>
-                  <TextField type={'body1'} align={'justify'}>A continuación, descargue la plantilla, escriba la información de los participantes de la actividad "Pinta un mural" y, posteriormente, suba aquí el archivo para continuar con el registro.</TextField>
+                  <TextField type={'body1'} align={'justify'}>A continuación, <br />
+                     1. <b>Descargue la plantilla</b>, escriba la información de los participantes de la actividad "Pinta un mural". <br />
+                     2. Suba aquí el archivo EXCEL con los participantes de la actividad para continuar con el registro.
+                  </TextField>
 
                   <Alert severity="info">Solo se aceptan archivos en formato xlsx (Excel).</Alert>
                   <br />
 
                   <div className="btn-excel">
                      <a href={`${urlApi}/plantilla`} target='blank'>
-                        <Button className='btn-submit' variant="outlined" color='secondary'>
-                           <b>Descargar plantilla</b>
+                        <Button className='btn-submit' variant="contained" color='secondary'>
+                           <b>1. Descargar plantilla</b>
                         </Button>
                      </a>
 
@@ -197,7 +200,7 @@ const DocumentoFirmado = ({ set_Check, rol }) => {
                            value: true,
                            message: message_required
                         }
-                     })} accept={'.xlsx'} color='secondary' label={"Subir el archivo excel"} name={'archivos.excel'} selectedFile={watch('archivos.excel')} error={errors.acudiente?.firma} />
+                     })} accept={'.xlsx'} color='fourth' label={"2. Subir el archivo excel"} name={'archivos.excel'} selectedFile={watch('archivos.excel')} error={errors.acudiente?.firma} />
                   </div>
 
                   {watch('archivos.excel').length !== 0 &&

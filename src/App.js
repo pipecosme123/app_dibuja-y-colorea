@@ -23,6 +23,9 @@ function App() {
       },
       third: {
         main: '#d2010d',
+      },
+      fourth: {
+        main: '#5F8700',
       }
     },
     overrides: {
