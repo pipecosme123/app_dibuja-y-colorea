@@ -10,7 +10,7 @@ const ImageItem = ({ key, item, handleShow }) => {
    return (
       <ImageListItem key={key} className='ImageListItem' onClick={() => handleShow(item)}>
          <img
-            src={`${urlApi}/images/${item.url}`}
+            src={`${urlApi}/images?key=${item.url}`}
             alt={''}
             loading="lazy"
          />

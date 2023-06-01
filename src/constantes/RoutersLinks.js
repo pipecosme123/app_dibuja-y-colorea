@@ -3,7 +3,8 @@ export const RoutersLinks = {
    Login: '/login',
    Docentes: `/docentes`,
    Rector: `/rector`,
-   Page_instituciones: '/'
+   Page_instituciones: '/',
+   Seleccion: '/seleccion'
 }
 
 // export const urlApi = "http://localhost:3012";

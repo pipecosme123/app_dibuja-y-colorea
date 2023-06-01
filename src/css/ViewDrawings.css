@@ -1,0 +1,37 @@
+.ViewDrawings {
+  height: 100%;
+  min-height: 100vh;
+  padding-bottom: 3em;
+  background: #f3f3f3;
+}
+
+.ViewDrawings .logo {
+  padding: 2em 0;
+  text-align: center;
+}
+
+.ViewDrawings .logo img {
+  height: 15em;
+}
+
+.ViewDrawings .paper-ViewDrawings {
+  padding: 1em 2em;
+}
+
+.ViewDrawings ul.ImageList-dibujos {
+  grid-template-columns: repeat(5, 1fr) !important;
+}
+
+@media only screen and (max-width: 480px) {
+  .ViewDrawings .logo img {
+    width: 80%;
+  }
+
+  .ViewDrawings .paper-ViewDrawings {
+    padding: 1em;
+  }
+
+  .ViewDrawings ul.ImageList-dibujos {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}

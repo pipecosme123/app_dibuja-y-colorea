@@ -4,18 +4,18 @@ import React from 'react';
 
 import '../css/WindowModal.css';
 
-const WindowModal = ({ show, handleClose, children }) => {
+const WindowModal = ({ show, institucion, handleClose, children }) => {
 
    return (
       <Dialog
          open={show}
          fullWidth={true}
-         maxWidth={'sm'}
+         // maxWidth={'lg'}
+         fullScreen
          onClose={handleClose}
          className='WindowModal'
       >
          <DialogTitle>
-            {"Mi dibujo"}
             <IconButton
                aria-label="close"
                onClick={handleClose}
@@ -29,7 +29,7 @@ const WindowModal = ({ show, handleClose, children }) => {
                <CloseIcon />
             </IconButton>
          </DialogTitle>
-         <DialogContent>
+         <DialogContent className='DialogContent-modal'>
             {children}
          </DialogContent>
       </Dialog>
