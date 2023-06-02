@@ -12,7 +12,7 @@ import logo from "../css/img/Logo.svg";
 import "../css/ViewDrawings.css";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-const ViewDrawings = ({ tipo, titulo }) => {
+const ViewDrawings = ({ tipo, url_data }) => {
   window.document.title = "Incripciones - Dibuja y Colorea";
 
   const [show, setShow] = useState(false);
@@ -37,7 +37,7 @@ const ViewDrawings = ({ tipo, titulo }) => {
     let newPage = page + 1;
     api_handleSubmit({
       method: "get",
-      url: `/murales/${tipo}/${newPage}`,
+      url: `/${url_data}/${tipo}/${newPage}`,
     })
       .then((res) => {
         console.log(res.data);
@@ -101,6 +101,7 @@ const ViewDrawings = ({ tipo, titulo }) => {
             </div>
             <div className="content-information">
               <TextField type={"subtitle1"}>
+                {/* <b>Institución:</b> {imageModal.id_instituciones} <br/> */}
                 <b>Institución:</b> {imageModal.nombre}
                 <br />
                 <b>Sede:</b> {imageModal.sede}

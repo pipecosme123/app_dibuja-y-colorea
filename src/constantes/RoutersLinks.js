@@ -4,7 +4,8 @@ export const RoutersLinks = {
    Docentes: `/docentes`,
    Rector: `/rector`,
    Page_instituciones: '/',
-   Seleccion: '/seleccion'
+   Seleccion: '/seleccion',
+   Seleccion_jurado_1: '/seleccion/j1'
 }
 
 // export const urlApi = "http://localhost:3012";
