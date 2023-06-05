@@ -92,8 +92,8 @@ const Login = () => {
                      message: message_required
                   },
                   maxLength: {
-                     value: 45,
-                     message: "Se ha superado el límite máximo de 45 caracteres"
+                     value: 100,
+                     message: "Se ha superado el límite máximo de 100 caracteres"
                   }
                })} required={true} label={"Correo Electrónico"} error={errors.username} />
 
@@ -103,8 +103,8 @@ const Login = () => {
                      message: message_required
                   },
                   maxLength: {
-                     value: 45,
-                     message: "Se ha superado el límite máximo de 45 caracteres"
+                     value: 100,
+                     message: "Se ha superado el límite máximo de 100 caracteres"
                   }
                })} type={'password'} required={true} label={"Contraseña"} error={errors.password} />
 

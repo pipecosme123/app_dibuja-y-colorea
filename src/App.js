@@ -52,7 +52,7 @@ function App() {
     <AuthContextProvider>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-          <Routes>get_data_murales_jurado_1
+          <Routes>
             <Route index element={<Insituciones />} />
             <Route path={RoutersLinks.Seleccion} element={<ViewDrawings url_data={'murales'} />} />
             <Route path={RoutersLinks.Seleccion_jurado_1} element={<ViewDrawings url_data={'murales/j1'} />} />
