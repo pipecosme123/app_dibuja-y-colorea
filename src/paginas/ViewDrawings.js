@@ -58,12 +58,20 @@ const ViewDrawings = ({ tipo, titulo }) => {
       <div className="logo">
         <img src={logo} alt="" />
       </div>
-      <TextField type={"h4"} align={"center"}>DIBUJA Y COLOREA</TextField>
-      <TextField type={"h5"} align={"center"}>CON EL Dr. MUELITAS</TextField>
+      <TextField type={"h4"} align={"center"}>
+        DIBUJA Y COLOREA
+      </TextField>
+      <TextField type={"h5"} align={"center"}>
+        CON EL Dr. MUELITAS
+      </TextField>
       <Paper className="paper-ViewDrawings" elevation={2}>
-        <TextField type={"body1"} align={"center"}>Edición:</TextField>
-        <TextField type={"h6"} align={"center"}>{titulo}</TextField>
-        
+        <TextField type={"body1"} align={"center"}>
+          Edición:
+        </TextField>
+        <TextField type={"h6"} align={"center"}>
+          {titulo}
+        </TextField>
+
         <InfiniteScroll
           dataLength={data.length} //This is important field to render the next data
           next={() => get_data(page)}
@@ -91,17 +99,23 @@ const ViewDrawings = ({ tipo, titulo }) => {
                 alt=""
               />
             </div>
-            <TextField type={"subtitle1"}>
-              <b>Artista:</b> {imageModal.infantes}
-            </TextField>
-            <TextField type={"caption"}>
-              <b>Acudiente:</b> {imageModal.padres}
-            </TextField>
-            {imageModal.ViewDrawings !== "- -" && (
-              <TextField type={"caption"}>
-                <b>Odontólogo:</b> {imageModal.ViewDrawings}
+            <div className="content-information">
+              <TextField type={"subtitle1"}>
+                <b>Artista:</b> {imageModal.infantes}
               </TextField>
-            )}
+              <TextField type={"caption"}>
+                <b>Acudiente:</b> {imageModal.padres}
+              </TextField>
+              {imageModal.odontologo !== "- -" && (
+                <TextField type={"caption"}>
+                  <b>Odontólogo:</b> {imageModal.odontologo}
+                </TextField>
+              )}
+              <br />
+              <TextField type={"caption"}>
+                <b>Clave:</b> {imageModal.url}
+              </TextField>
+            </div>
           </WindowModal>
         )}
       </Paper>

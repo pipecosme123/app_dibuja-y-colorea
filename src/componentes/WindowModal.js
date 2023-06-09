@@ -10,7 +10,7 @@ const WindowModal = ({ show, handleClose, children }) => {
       <Dialog
          open={show}
          fullWidth={true}
-         maxWidth={'sm'}
+         fullScreen
          onClose={handleClose}
          className='WindowModal'
       >
@@ -29,7 +29,7 @@ const WindowModal = ({ show, handleClose, children }) => {
                <CloseIcon />
             </IconButton>
          </DialogTitle>
-         <DialogContent>
+         <DialogContent className='DialogContent-modal'>
             {children}
          </DialogContent>
       </Dialog>

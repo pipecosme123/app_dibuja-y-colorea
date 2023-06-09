@@ -16,7 +16,7 @@ const Insituciones = ({ tipo }) => {
          </div>
          <div className="content">
             <img className='mural' src={tipo === 'odontologos' ? odontologos : mural} alt="" />
-            <h4>Las fotos de los murales se comenzarán a subir a partir del día <b>08 de mayo</b></h4>
+            {/* <h4>Las fotos de los murales se comenzarán a subir a partir del día <b>08 de mayo</b></h4> */}
          </div>
       </div>
    );
