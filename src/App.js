@@ -6,6 +6,7 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import "./css/App.css";
 import ViewDrawings from "./paginas/ViewDrawings";
 import Insituciones from "./paginas/Insituciones";
+import ViewDrawingsGeneral from "./paginas/ViewDrawingsGeneral";
 
 function App() {
   const theme = createTheme({
@@ -59,7 +60,7 @@ function App() {
           <Route
             exact
             path={RoutersLinks.View_Odontologos}
-            element={<Insituciones />}
+            element={<ViewDrawingsGeneral />}
           />
 
           <Route

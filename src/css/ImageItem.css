@@ -12,6 +12,24 @@
   border-radius: 10px;
 }
 
+.ImageListItem .number{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #11afd0;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+
+.ImageListItem .number h4{
+  font-family: 'Regular';
+  text-align: center;
+  color: #fff;
+}
+
 @media only screen and (max-width: 480px) {
   .ImageListItem {
     width: 80px;
@@ -19,8 +37,13 @@
   }
 
   .ImageListItem img {
-    width: 100px !important;
-    height: 100px !important;
+    width: 80px !important;
+    height: 80px !important;
     border-radius: 10px;
+  }
+
+  .ImageListItem .number{
+    width: 20px;
+    height: 20px;
   }
 }
