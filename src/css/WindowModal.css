@@ -47,6 +47,22 @@
 }
 
 @media only screen and (max-width: 480px) {
+
+  .WindowModal .DialogContent-modal {
+    flex-direction: column;
+  }
+
+  .WindowModal .content-img-modal {
+    width: 100%;
+    height: auto;
+    margin-top: 2em;
+  }
+
+  .WindowModal .content-information {
+    width: 100%;
+  padding-left: 0;
+}  
+  
   .WindowModal .box-WindowModal {
     width: 80%;
   }

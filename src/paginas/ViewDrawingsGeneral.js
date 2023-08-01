@@ -7,7 +7,7 @@ import ImageItem from "../componentes/ImageItem";
 import WindowModal from "../componentes/WindowModal";
 import { urlApi } from "../constantes/RoutersLinks";
 import TextField from "../componentes/TextField";
-import textos from "../css/img/textos.png";
+import textos from "../css/img/logo_pinta.png";
 import fondo_final from "../css/img/fondo_final.jpg";
 
 import "../css/ViewDrawings.css";
@@ -41,7 +41,7 @@ const ViewDrawingsGeneral = ({ tipo, url_data }) => {
     axios({
       baseURL: urlApi,
       method: "get",
-      url: `/murales/${newPage}`,
+      url: `/dibujos/odontologos/${newPage}`,
     })
       .then((res) => {
         setPage(newPage);
@@ -60,7 +60,7 @@ const ViewDrawingsGeneral = ({ tipo, url_data }) => {
     axios({
       baseURL: urlApi,
       method: "get",
-      url: `/ganadores`,
+      url: `/ganadores/dib`,
     })
       .then((res) => {
         setGanadores(res.data);
@@ -71,10 +71,13 @@ const ViewDrawingsGeneral = ({ tipo, url_data }) => {
   }, []);
 
   return (
-    <div>
+    <div className="ViewDrawingsGeneral">
       <div className="logo">
+        <div>
+          <h3>Conoce los 4 Dibujos</h3>
+          <h4>seleccionados de la actividad</h4>
+        </div>
         <img src={textos} className="textos" alt="" />
-        <img src={fondo_final} className="fondo_final" alt="" />
       </div>
       <Container fixed className="ViewDrawings">
         <Paper className="paper-ViewDrawings" elevation={2}>
@@ -127,17 +130,19 @@ const ViewDrawingsGeneral = ({ tipo, url_data }) => {
               </div>
               <div className="content-information">
                 <TextField type={"subtitle1"}>
-                  {/* <b>Institución:</b> {imageModal.id_instituciones} <br/> */}
-                  <b>Institución:</b> {imageModal.nombre}
-                  <br />
-                  <b>Sede:</b> {imageModal.sede}
+                  <b>Artista:</b> {imageModal.infantes}
                 </TextField>
-                <hr />
                 <TextField type={"caption"}>
-                  <b>Docente:</b> {imageModal.nombresD} {imageModal.apellidosD}
-                  <br />
-                  <b>Rector:</b> {imageModal.nombresR} {imageModal.apellidosR}
+                  <b>Acudiente:</b> {imageModal.padres}
                 </TextField>
+                <TextField type={"caption"}>
+                  <b>url:</b> {imageModal.url}
+                </TextField>
+                {imageModal.odontologo !== "- -" && (
+                  <TextField type={"caption"}>
+                    <b>Odontólogo:</b> {imageModal.odontologo}
+                  </TextField>
+                )}
               </div>
             </WindowModal>
           )}
